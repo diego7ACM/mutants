@@ -35,6 +35,7 @@
   "dependencies": {
     "@types/mongoose": "^5.11.97",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "mongoose": "^6.1.6",
     "morgan": "^1.10.0",

@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { connect } from 'mongoose';
 
 /**
@@ -9,5 +11,5 @@ import { connect } from 'mongoose';
  * @returns Retorna el acceso a la DB
  */
 export async function startConnection() {
-    return await connect('mongodb+srv://meli:meli@mutants.3vvek.mongodb.net/mutants?retryWrites=true&w=majority');
+    return await connect(`mongodb+srv://${process.env.DB}:${process.env.DB}@mutants.3vvek.mongodb.net/mutants?retryWrites=true&w=majority`);
 }

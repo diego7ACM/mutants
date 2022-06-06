@@ -23,9 +23,14 @@ export default class Routes {
      * @author Diego Sarmiento - Jun, 05-2022
      * @version 1.0.0 
      */
-    constructor() {
-    }
+    constructor() {}
     
+    /**
+     * Metodo que crea las rutas del proyecto
+     *
+     * @author Diego Sarmiento - Jun, 05-2022
+     * @version 1.0.0 
+     */
     public createRoutesDna() {
         this.router.get('/', this.dnaController.returnMessageHome);
         this.router.post('/mutant', this.dnaController.verifyDna);

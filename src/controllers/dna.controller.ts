@@ -86,7 +86,7 @@ export default class DnaController {
             // Si es valido el dna, se busca en db si existe
             const searchDna = await Dna.findOne({ dna: dna });
             // De no existir, se comprueba si es mutante el dns
-            if (!searchDna?.dna) {
+            if (!searchDna) {
                 const isMutant = await this.isMutant(dna);
                 dnaMutant.isMutant = isMutant;
 
@@ -121,33 +121,45 @@ export default class DnaController {
      * @returns si es mutante o no el dna
      */
     public async isMutant(dna: string[]): Promise<boolean> {
+        // Obtiene las coincidencias de las secuencias del dna horizontalmente
         const dnaHorizontal = await this._verifyHorizontalDna(dna);
 
+        // Si hay mas de una coincidencia, se retorna indicando que es mutante
         if (dnaHorizontal.length > 1) {
             return true;
         }
 
+        // Obtiene las coincidencias de las secuencias del dna verticalmente
         const dnaVertical = await this._verifyVerticalDna(dna);
+        // Se suman el total de coincidencias hasta el momento de los recorridos por la matriz
         let totalCodesDna = dnaHorizontal.length + dnaVertical.length;
 
+        // Si hay mas de una coincidencia, se retorna indicando que es mutante
         if (totalCodesDna > 1) {
             return true;
         }
 
+        // Obtiene las coincidencias de las secuencias del dna en la transversal izquierda
         const dnaLeftTransverse = await this._verifyLeftTransverseDna(dna);
-
+        // Se suman el total de coincidencias hasta el momento de los recorridos por la matriz
         totalCodesDna += dnaLeftTransverse.length;
 
+        // Si hay mas de una coincidencia, se retorna indicando que es mutante
         if (totalCodesDna > 1) {
             return true;
         }
+
+        // Obtiene las coincidencias de las secuencias del dna en la transversal derecha
         const dnaRightTransverse = await this._verifyRightTransverseDna(dna);
+        // Se suman el total de coincidencias hasta el momento de los recorridos por la matriz
         totalCodesDna += dnaRightTransverse.length;
 
+        // Si hay mas de una coincidencia, se retorna indicando que es mutante
         if (totalCodesDna > 1) {
             return true;
         }
 
+        // Se indica que el dna no es mutante
         return false;
     }
 
@@ -360,17 +372,18 @@ export default class DnaController {
     }
 
     /**
-     * Metodo que verifica si la estructura del dna es valido
+     * Metodo que retorna las estadisticas de los dna's reportados
      *
      * @author Diego Sarmiento - Jun, 05-2022
      * @version 1.0.0
      *
      * @param req request de la peticion
      * @param res response de la peticion
-     * @returns Mensaje de confirmacion del dna
+     * @returns Mensaje de estadisticas de los dna's registrados
      */
     public calculateStats = async (req: Request, res: Response) => {
 
+        // Consulta que retorna la cantidad de dna's de mutantes, humanos y el porcentaje de dna's de mutantes
         const query = [
             {
                 '$group': {
@@ -413,6 +426,7 @@ export default class DnaController {
             }
         ];
 
+        // Se consulta a db el query
         const result = await Dna.aggregate(query);
         // Se retorna la respuesta al cliente
         return res.json({
