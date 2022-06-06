@@ -28,6 +28,8 @@ export default class Routes {
     
     public createRoutesDna() {
         this.router.get('/', this.dnaController.returnMessageHome);
+        this.router.post('/mutant', this.dnaController.verifyDna);
+        this.router.get('/stats', this.dnaController.calculateStats);
         return this.router;
     }
 }

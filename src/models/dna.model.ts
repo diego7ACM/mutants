@@ -9,7 +9,13 @@ import IDna from '../interfaces/dna.interface';
  * @version 1.0.0 
  */
 const schema = new Schema(
-
+    {
+        dna: [String],
+        isMutant: Boolean,
+    },
+    {
+        versionKey: false
+    }
 );
 
 // Se exporta el modelo para hacer uso de este en el proyecto

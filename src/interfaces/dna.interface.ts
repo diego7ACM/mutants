@@ -8,5 +8,13 @@ import { Document } from 'mongoose'
  */
 export default interface IDna extends Document {
 
+    /*
+    Contiene el dna
+    */
+    dna: string[];
 
+    /*
+    Indica si el dna es de un mutante
+    */
+    isMutant: boolean;
 }
