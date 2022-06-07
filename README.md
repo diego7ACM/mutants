@@ -2,6 +2,22 @@
 
 Mutants backend project, built in node.
 
+Se clona el proyecto git clone https://dasarmientol6@bitbucket.org/dasarmientol6/mutants.git
+
+Se instalan las dependencias: npm i
+
+Se ejecutan las peticiones al localhost en el puerto 3000
+
+GET/ localhost:3000/stats
+POST/ localhost:3000/mutant
+
+Tambien, se puede ejecutar las peticiones al servidor http://34.125.49.143
+
+GET/ http://34.125.49.143/stats
+POST/ http://34.125.49.143/mutant
+
+En la carpeta assets del proyecto se encuentra la coleccion de postman para enviar las peticiones al servidor
+
 # Creation
 Se crea el package
 npm init -y

@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "01860b2c-347b-4b1a-b464-77e96a34300e",
+		"name": "mutants",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/mutant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dna\": [\"ATGCGG\",\n            \"CAGTGC\",\n            \"TTAGGT\",\n            \"AGGAGG\",\n            \"CCCCTA\",\n            \"TCACTT\"\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.125.49.143/mutant",
+					"protocol": "http",
+					"host": [
+						"34",
+						"125",
+						"49",
+						"143"
+					],
+					"path": [
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://34.125.49.143/stats",
+					"protocol": "http",
+					"host": [
+						"34",
+						"125",
+						"49",
+						"143"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
